@@ -1,0 +1,17 @@
+version: '2.1'
+services:
+  minecraft-game:
+    container_name: minecraft-game
+    environment:
+      EULA: "TRUE"
+      TYPE: PAPER
+    image: itzg/minecraft-server:adopt11
+    ports:
+    - 25565:25565/tcp
+    restart: "no"
+    stdin_open: true
+    tty: true
+    volumes:
+    - ./minecraft-game:/data
+volumes:
+  minecraft-game:
