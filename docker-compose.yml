@@ -1,6 +1,6 @@
 version: '3'
 services:
-  minecraft-proxy:
+  proxy:
     container_name: minecraft-proxy
     environment:
       TYPE: CUSTOM
@@ -13,8 +13,8 @@ services:
     stdin_open: true
     tty: true
     volumes:
-    - ./minecraft-proxy:/server
-  minecraft-game:
+    - ./proxy:/server
+  game:
     container_name: minecraft-game
     environment:
       EULA: "TRUE"
@@ -25,7 +25,4 @@ services:
     stdin_open: true
     tty: true
     volumes:
-    - ./minecraft-game:/data
-volumes:
-  minecraft-game:
-  minecraft-proxy:
+    - ./game:/data
