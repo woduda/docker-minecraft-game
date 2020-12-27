@@ -1,17 +1,31 @@
-version: '2.1'
+version: '3'
 services:
+  minecraft-proxy:
+    container_name: minecraft-proxy
+    environment:
+      TYPE: CUSTOM
+      BUNGEE_JAR_URL: "https://2lstudios.dev/mirror/FlameCord/FlameCord-0.4.6.jar"
+      MEMORY: "64M"
+    image: itzg/bungeecord:latest
+    ports:
+    - 25565:25577
+    restart: always
+    stdin_open: true
+    tty: true
+    volumes:
+    - ./minecraft-proxy:/server
   minecraft-game:
     container_name: minecraft-game
     environment:
       EULA: "TRUE"
       TYPE: PAPER
+      ONLINE_MODE: "FALSE"
     image: itzg/minecraft-server:adopt11
-    ports:
-    - 25565:25565/tcp
-    restart: "no"
+    restart: always
     stdin_open: true
     tty: true
     volumes:
     - ./minecraft-game:/data
 volumes:
   minecraft-game:
+  minecraft-proxy:
